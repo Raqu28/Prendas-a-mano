@@ -181,6 +181,40 @@
     }
     .tarjeta-muestra h3 { padding: 14px 16px 4px; font-size: 1rem; }
     .tarjeta-muestra p { padding: 0 16px 16px; color: var(--tinta-suave); font-size: 0.84rem; }
+    .imagen-ampliable { cursor: zoom-in; }
+    .visor-imagen {
+      width: min(92vw, 980px);
+      max-height: 92vh;
+      padding: 0;
+      border: 0;
+      border-radius: 20px;
+      background: transparent;
+      overflow: visible;
+    }
+    .visor-imagen::backdrop { background: rgba(33, 29, 26, 0.88); }
+    .visor-imagen img {
+      display: block;
+      width: 100%;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #fffdf9;
+    }
+    .visor-cerrar {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: #fffdf9;
+      color: var(--tinta);
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(33, 29, 26, 0.18);
+    }
     .seccion-encargo { margin-top: 12px; padding: 42px; border-radius: 30px; background: #f9dce8; }
     .seccion-encargo .titulo-seccion { color: var(--rosa); }
     .seccion-encargo .bajada-seccion { margin-bottom: 20px; }
@@ -409,12 +443,12 @@
       <p class="bajada-seccion">Ejemplos personales de diseños pintados a mano. Estas prendas son de uso propio y no están a la venta.</p>
       <div class="grilla-muestras">
         <article class="tarjeta-muestra">
-          <img src="img/muestra-calavera-rosa.jpg" alt="Jean personalizado con calavera y rosa pintada a mano">
+          <img class="imagen-ampliable" src="img/muestra-calavera-rosa.jpg" alt="Jean personalizado con calavera y rosa pintada a mano" tabindex="0" role="button" aria-label="Ampliar foto de calavera y rosa">
           <h3>Calavera y rosa</h3>
           <p>Ejemplo personal · Prenda pintada a mano</p>
         </article>
         <article class="tarjeta-muestra">
-          <img src="img/muestra-personajes.jpg" alt="Jean personalizado con personajes pintados a mano">
+          <img class="imagen-ampliable" src="img/muestra-personajes.jpg" alt="Jean personalizado con personajes pintados a mano" tabindex="0" role="button" aria-label="Ampliar foto de personajes ilustrados">
           <h3>Personajes ilustrados</h3>
           <p>Ejemplo personal · Prenda pintada a mano</p>
         </article>
@@ -502,6 +536,38 @@
       <a href="#encargos">Cómo encargar</a>
     </nav>
   </footer>
+
+  <dialog class="visor-imagen" id="visor-imagen" aria-label="Vista ampliada de la foto">
+    <button class="visor-cerrar" type="button" aria-label="Cerrar foto ampliada">×</button>
+    <img src="" alt="">
+  </dialog>
+
+  <script>
+    const visor = document.getElementById("visor-imagen");
+    const visorImagen = visor.querySelector("img");
+    const visorCerrar = visor.querySelector(".visor-cerrar");
+
+    function abrirImagen(elemento) {
+      visorImagen.src = elemento.src;
+      visorImagen.alt = elemento.alt;
+      visor.showModal();
+    }
+
+    document.querySelectorAll(".imagen-ampliable").forEach((elemento) => {
+      elemento.addEventListener("click", () => abrirImagen(elemento));
+      elemento.addEventListener("keydown", (evento) => {
+        if (evento.key === "Enter" || evento.key === " ") {
+          evento.preventDefault();
+          abrirImagen(elemento);
+        }
+      });
+    });
+
+    visorCerrar.addEventListener("click", () => visor.close());
+    visor.addEventListener("click", (evento) => {
+      if (evento.target === visor) visor.close();
+    });
+  </script>
 
 </body>
 </html>
