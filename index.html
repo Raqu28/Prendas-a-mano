@@ -553,7 +553,11 @@
       visor.showModal();
     }
 
-    document.querySelectorAll(".imagen-ampliable").forEach((elemento) => {
+    document.querySelectorAll("main img").forEach((elemento) => {
+      elemento.classList.add("imagen-ampliable");
+      elemento.tabIndex = 0;
+      elemento.setAttribute("role", "button");
+      elemento.setAttribute("aria-label", `Ampliar foto: ${elemento.alt || "imagen"}`);
       elemento.addEventListener("click", () => abrirImagen(elemento));
       elemento.addEventListener("keydown", (evento) => {
         if (evento.key === "Enter" || evento.key === " ") {
