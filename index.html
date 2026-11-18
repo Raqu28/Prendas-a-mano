@@ -333,7 +333,7 @@
       <div class="encabezado-seccion">
         <div>
           <h2 class="titulo-seccion" style="color: #b93e70;">Remeras listas para llevar</h2>
-          <p class="bajada-seccion">Diseños pintados, disponibles en stock. El precio incluye la remera y el trabajo de pintura. Tocá “Comprar”: se copiará un mensaje con el diseño y el talle. En Instagram, pegalo y envialo para coordinar el pago y la entrega.</p>
+          <p class="bajada-seccion">Diseños pintados, disponibles en stock. El precio incluye la remera y el trabajo de pintura. Tocá “Comprar”: se copiará un mensaje con el diseño y el talle para coordinar el pago y la entrega por Instagram o por correo electrónico.</p>
         </div>
       </div>
 
@@ -439,6 +439,7 @@
         </article>
       </div>
       <p class="aviso-consulta" id="aviso-consulta" role="status" aria-live="polite" hidden></p>
+      <p class="aviso-consulta">¿No tenés Instagram? Escribinos a <a href="mailto:andradara170@gmail.com?subject=Consulta%20sobre%20una%20remera">andradara170@gmail.com</a>.</p>
     </section>
 
     <section class="contenedor seccion-vendidos">
@@ -542,7 +543,7 @@
           <div class="paso">
             <div class="paso-numero">1</div>
             <h3>Contame tu idea</h3>
-            <p>Escribime por Instagram y compartime el diseño que imaginás.</p>
+            <p>Escribime por Instagram o por correo electrónico y compartime el diseño que imaginás.</p>
           </div>
           <div class="paso">
             <div class="paso-numero">2</div>
@@ -565,6 +566,9 @@
           <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="btn-principal">
             Consultar precio por Insta ↗
           </a>
+          <a href="mailto:andradara170@gmail.com?subject=Consulta%20sobre%20una%20prenda%20personalizada" class="btn-secundario">
+            Consultar por correo
+          </a>
         </div>
       </div>
     </section>
@@ -582,6 +586,9 @@
     <p>Diseño, color y creatividad en cada prenda pintada a mano ♡</p>
     <a href="https://instagram.com/prendas.a.mano" target="_blank" rel="noopener" class="btn-ig-footer">
       Seguime en Instagram · @prendas.a.mano
+    </a>
+    <a href="mailto:andradara170@gmail.com" class="btn-ig-footer">
+      Escribime por correo · andradara170@gmail.com
     </a>
     <nav class="pie-nav" aria-label="Navegación del pie de página">
       <a href="#inicio">Inicio</a>
@@ -608,9 +615,9 @@
         avisoConsulta.hidden = false;
 
         Promise.resolve().then(() => navigator.clipboard.writeText(mensaje)).then(() => {
-          avisoConsulta.textContent = "Mensaje de compra copiado. En Instagram, pegalo en el campo del chat y envialo.";
+          avisoConsulta.innerHTML = `Mensaje de compra copiado. En Instagram, pegalo en el chat y envialo. Si no tenés Instagram, enviá el mensaje a <a href="mailto:andradara170@gmail.com?subject=Compra%20de%20remera&amp;body=${encodeURIComponent(mensaje)}">andradara170@gmail.com</a>.`;
         }).catch(() => {
-          avisoConsulta.textContent = `No se pudo copiar automáticamente. Escribí en Instagram: “${mensaje}”`;
+          avisoConsulta.innerHTML = `No se pudo copiar automáticamente. Escribí en Instagram: “${mensaje}” o enviá el pedido por correo a <a href="mailto:andradara170@gmail.com?subject=Compra%20de%20remera&amp;body=${encodeURIComponent(mensaje)}">andradara170@gmail.com</a>.`;
         });
       });
     });
