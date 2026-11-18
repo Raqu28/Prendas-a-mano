@@ -254,6 +254,9 @@
     footer .logo-footer { display: inline-block; margin-bottom: 10px; color: var(--rosa); }
     footer p { margin-bottom: 18px; color: rgba(251, 243, 232, 0.78); font-size: 0.92rem; }
     .btn-ig-footer { padding: 12px 22px; background: var(--mostaza); color: var(--tinta); }
+    .opciones-correo { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+    .btn-copiar-correo { border: 0; cursor: pointer; }
+    footer .aviso-copia { min-height: 1.2em; margin: 10px 0 0; font-size: 0.84rem; }
     .pie-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; margin-top: 24px; }
     .pie-nav a { color: var(--crema-fondo); font-size: 0.84rem; text-decoration: none; }
 
@@ -569,6 +572,9 @@
           <a href="mailto:andradara170@gmail.com?subject=Consulta%20sobre%20una%20prenda%20personalizada" class="btn-secundario">
             Consultar por correo
           </a>
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=andradara170@gmail.com&amp;su=Consulta%20sobre%20una%20prenda%20personalizada" target="_blank" rel="noopener" class="btn-secundario">
+            Abrir Gmail
+          </a>
         </div>
       </div>
     </section>
@@ -590,6 +596,15 @@
     <a href="mailto:andradara170@gmail.com" class="btn-ig-footer">
       Escribime por correo · andradara170@gmail.com
     </a>
+    <div class="opciones-correo">
+      <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=andradara170@gmail.com" target="_blank" rel="noopener" class="btn-secundario">
+        Abrir Gmail
+      </a>
+      <button type="button" class="btn-ig-footer btn-copiar-correo" id="copiar-correo">
+        Copiar correo
+      </button>
+    </div>
+    <p class="aviso-copia" id="aviso-copia" role="status" aria-live="polite"></p>
     <nav class="pie-nav" aria-label="Navegación del pie de página">
       <a href="#inicio">Inicio</a>
       <a href="#trabajos">Trabajos</a>
@@ -606,6 +621,17 @@
 
   <script>
     const avisoConsulta = document.getElementById("aviso-consulta");
+    const botonCopiarCorreo = document.getElementById("copiar-correo");
+    const avisoCopia = document.getElementById("aviso-copia");
+
+    botonCopiarCorreo.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("andradara170@gmail.com");
+        avisoCopia.textContent = "Correo copiado.";
+      } catch {
+        avisoCopia.textContent = "El correo es: andradara170@gmail.com";
+      }
+    });
 
     document.querySelectorAll(".link-pedir").forEach((enlace) => {
       enlace.addEventListener("click", (evento) => {
