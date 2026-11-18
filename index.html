@@ -333,7 +333,7 @@
       <div class="encabezado-seccion">
         <div>
           <h2 class="titulo-seccion" style="color: #b93e70;">Remeras listas para llevar</h2>
-          <p class="bajada-seccion">Diseños pintados, disponibles en stock. El precio incluye la remera y el trabajo de pintura. Tocá “Consultar”: se copiará un mensaje con el diseño y el talle. En Instagram, pegalo en el chat y envialo.</p>
+          <p class="bajada-seccion">Diseños pintados, disponibles en stock. El precio incluye la remera y el trabajo de pintura. Tocá “Comprar”: se copiará un mensaje con el diseño y el talle. En Instagram, pegalo y envialo para coordinar el pago y la entrega.</p>
         </div>
       </div>
 
@@ -368,7 +368,7 @@
               <h3>Daga y rosa</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Daga y rosa" data-talle="M">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Daga y rosa" data-talle="M">Comprar</a>
           </div>
         </article>
 
@@ -379,7 +379,7 @@
               <h3>Mickey clásico</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Mickey clásico" data-talle="M">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Mickey clásico" data-talle="M">Comprar</a>
           </div>
         </article>
 
@@ -390,7 +390,7 @@
               <h3>Ígor con corazones</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Ígor con corazones" data-talle="M">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Ígor con corazones" data-talle="M">Comprar</a>
           </div>
         </article>
 
@@ -401,7 +401,7 @@
               <h3>Minnie Mouse</h3>
               <p>Talle T5 · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Minnie Mouse" data-talle="T5">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Minnie Mouse" data-talle="T5">Comprar</a>
           </div>
         </article>
 
@@ -412,7 +412,7 @@
               <h3>Stitch</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Stitch" data-talle="M">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Stitch" data-talle="M">Comprar</a>
           </div>
         </article>
 
@@ -423,7 +423,7 @@
               <h3>Daisy Duck</h3>
               <p>Talle T5 · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Daisy Duck" data-talle="T5">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Daisy Duck" data-talle="T5">Comprar</a>
           </div>
         </article>
 
@@ -434,7 +434,7 @@
               <h3>Rosa y Corazón</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Rosa y Corazón" data-talle="M">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Rosa y Corazón" data-talle="M">Comprar</a>
           </div>
         </article>
       </div>
@@ -603,12 +603,12 @@
     document.querySelectorAll(".link-pedir").forEach((enlace) => {
       enlace.addEventListener("click", (evento) => {
         evento.preventDefault();
-        const mensaje = `Hola, quiero consultar por la remera ${enlace.dataset.prenda}, talle ${enlace.dataset.talle}.`;
+        const mensaje = `Hola, quiero comprar la remera ${enlace.dataset.prenda}, talle ${enlace.dataset.talle}. ¿Cómo coordinamos el pago y la entrega?`;
         window.open(enlace.href, "_blank", "noopener");
         avisoConsulta.hidden = false;
 
         Promise.resolve().then(() => navigator.clipboard.writeText(mensaje)).then(() => {
-          avisoConsulta.textContent = "Mensaje copiado. En Instagram, pegalo en el campo del chat y envialo.";
+          avisoConsulta.textContent = "Mensaje de compra copiado. En Instagram, pegalo en el campo del chat y envialo.";
         }).catch(() => {
           avisoConsulta.textContent = `No se pudo copiar automáticamente. Escribí en Instagram: “${mensaje}”`;
         });
