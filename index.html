@@ -146,6 +146,7 @@
     .tarjeta-info h3 { font-size: 0.98rem; line-height: 1.25; }
     .tarjeta-info p { margin-top: 3px; color: var(--tinta-suave); font-size: 0.83rem; }
     .link-pedir { flex-shrink: 0; padding: 9px 13px; background: var(--rosa); color: var(--crema-fondo); font-size: 0.78rem; }
+    .aviso-consulta { margin-top: 16px; color: var(--tinta-suave); font-size: 0.9rem; }
     .seccion-vendidos { padding-top: 20px; }
     .titulo-vendidos { color: var(--rosa); }
     .seccion-vendidos .bajada-seccion { margin-bottom: 22px; }
@@ -367,7 +368,7 @@
               <h3>Daga y rosa</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Daga y rosa" data-talle="M">Consultar</a>
           </div>
         </article>
 
@@ -378,7 +379,7 @@
               <h3>Mickey clásico</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Mickey clásico" data-talle="M">Consultar</a>
           </div>
         </article>
 
@@ -389,7 +390,7 @@
               <h3>Ígor con corazones</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Ígor con corazones" data-talle="M">Consultar</a>
           </div>
         </article>
 
@@ -400,7 +401,7 @@
               <h3>Minnie Mouse</h3>
               <p>Talle T5 · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Minnie Mouse" data-talle="T5">Consultar</a>
           </div>
         </article>
 
@@ -411,7 +412,7 @@
               <h3>Stitch</h3>
               <p>Talle M · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Stitch" data-talle="M">Consultar</a>
           </div>
         </article>
 
@@ -422,10 +423,11 @@
               <h3>Daisy Duck</h3>
               <p>Talle T5 · 1 por $22.000</p>
             </div>
-            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir">Consultar</a>
+            <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="link-pedir" data-prenda="Daisy Duck" data-talle="T5">Consultar</a>
           </div>
         </article>
       </div>
+      <p class="aviso-consulta" id="aviso-consulta" role="status" aria-live="polite" hidden></p>
     </section>
 
     <section class="contenedor seccion-vendidos">
@@ -572,6 +574,23 @@
   </dialog>
 
   <script>
+    const avisoConsulta = document.getElementById("aviso-consulta");
+
+    document.querySelectorAll(".link-pedir").forEach((enlace) => {
+      enlace.addEventListener("click", (evento) => {
+        evento.preventDefault();
+        const mensaje = `Hola, quiero consultar por la remera ${enlace.dataset.prenda}, talle ${enlace.dataset.talle}.`;
+        window.open(enlace.href, "_blank", "noopener");
+        avisoConsulta.hidden = false;
+
+        Promise.resolve().then(() => navigator.clipboard.writeText(mensaje)).then(() => {
+          avisoConsulta.textContent = "Copiamos el mensaje. Pegalo en el chat de Instagram y envialo.";
+        }).catch(() => {
+          avisoConsulta.textContent = `No se pudo copiar automáticamente. Escribí en Instagram: “${mensaje}”`;
+        });
+      });
+    });
+
     const visor = document.getElementById("visor-imagen");
     const visorImagen = visor.querySelector("img");
     const visorCerrar = visor.querySelector(".visor-cerrar");
