@@ -442,7 +442,7 @@
         </article>
       </div>
       <p class="aviso-consulta" id="aviso-consulta" role="status" aria-live="polite" hidden></p>
-      <p class="aviso-consulta">¿No tenés Instagram? Escribime a <a href="mailto:andradara170@gmail.com?subject=Consulta%20sobre%20una%20remera">andradara170@gmail.com</a>.</p>
+      <p class="aviso-consulta">¿No tenés Instagram? Escribime a <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=andradara170@gmail.com&amp;su=Consulta%20sobre%20una%20remera" target="_blank" rel="noopener">andradara170@gmail.com</a>.</p>
     </section>
 
     <section class="contenedor seccion-vendidos">
@@ -569,11 +569,8 @@
           <a href="https://ig.me/m/prendas.a.mano" target="_blank" rel="noopener" class="btn-principal">
             Consultar precio por Insta ↗
           </a>
-          <a href="mailto:andradara170@gmail.com?subject=Consulta%20sobre%20una%20prenda%20personalizada" class="btn-secundario">
-            Consultar por correo
-          </a>
           <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=andradara170@gmail.com&amp;su=Consulta%20sobre%20una%20prenda%20personalizada" target="_blank" rel="noopener" class="btn-secundario">
-            Abrir Gmail
+            Consultar por correo
           </a>
         </div>
       </div>
@@ -593,7 +590,7 @@
     <a href="https://instagram.com/prendas.a.mano" target="_blank" rel="noopener" class="btn-ig-footer">
       Seguime en Instagram · @prendas.a.mano
     </a>
-    <a href="mailto:andradara170@gmail.com" class="btn-ig-footer">
+    <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=andradara170@gmail.com" target="_blank" rel="noopener" class="btn-ig-footer">
       Escribime por correo · andradara170@gmail.com
     </a>
     <div class="opciones-correo">
@@ -641,9 +638,9 @@
         avisoConsulta.hidden = false;
 
         Promise.resolve().then(() => navigator.clipboard.writeText(mensaje)).then(() => {
-          avisoConsulta.innerHTML = `Mensaje de compra copiado. En Instagram, pegalo en el chat y envialo. Si no tenés Instagram, enviá el mensaje a <a href="mailto:andradara170@gmail.com?subject=Compra%20de%20remera&amp;body=${encodeURIComponent(mensaje)}">andradara170@gmail.com</a>.`;
+          avisoConsulta.innerHTML = `Mensaje de compra copiado. En Instagram, pegalo en el chat y envialo. Si no tenés Instagram, enviá el mensaje desde <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=andradara170@gmail.com&amp;su=Compra%20de%20remera&amp;body=${encodeURIComponent(mensaje)}" target="_blank" rel="noopener">Gmail</a>.`;
         }).catch(() => {
-          avisoConsulta.innerHTML = `No se pudo copiar automáticamente. Escribí en Instagram: “${mensaje}” o enviá el pedido por correo a <a href="mailto:andradara170@gmail.com?subject=Compra%20de%20remera&amp;body=${encodeURIComponent(mensaje)}">andradara170@gmail.com</a>.`;
+          avisoConsulta.innerHTML = `No se pudo copiar automáticamente. Escribí en Instagram: “${mensaje}” o enviá el pedido desde <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=andradara170@gmail.com&amp;su=Compra%20de%20remera&amp;body=${encodeURIComponent(mensaje)}" target="_blank" rel="noopener">Gmail</a>.`;
         });
       });
     });
