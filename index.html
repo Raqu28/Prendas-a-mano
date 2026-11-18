@@ -333,7 +333,7 @@
       <div class="encabezado-seccion">
         <div>
           <h2 class="titulo-seccion" style="color: #b93e70;">Remeras listas para llevar</h2>
-          <p class="bajada-seccion">Diseños pintados, disponibles en stock. El precio incluye la remera y el trabajo de pintura. Para consultar, elegí la prenda que te interesa y escribime por Instagram indicando el diseño.</p>
+          <p class="bajada-seccion">Diseños pintados, disponibles en stock. El precio incluye la remera y el trabajo de pintura. Tocá “Consultar”: se copiará un mensaje con el diseño y el talle. En Instagram, pegalo en el chat y envialo.</p>
         </div>
       </div>
 
@@ -603,7 +603,7 @@
         avisoConsulta.hidden = false;
 
         Promise.resolve().then(() => navigator.clipboard.writeText(mensaje)).then(() => {
-          avisoConsulta.textContent = "Copiamos el mensaje. Pegalo en el chat de Instagram y envialo.";
+          avisoConsulta.textContent = "Mensaje copiado. En Instagram, pegalo en el campo del chat y envialo.";
         }).catch(() => {
           avisoConsulta.textContent = `No se pudo copiar automáticamente. Escribí en Instagram: “${mensaje}”`;
         });
