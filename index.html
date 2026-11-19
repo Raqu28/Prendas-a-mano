@@ -195,6 +195,31 @@
     .tarjeta-muestra h3 { padding: 14px 16px 4px; font-size: 1rem; }
     .tarjeta-muestra p { padding: 0 16px 16px; color: var(--tinta-suave); font-size: 0.84rem; }
     .imagen-ampliable { cursor: zoom-in; }
+    .marco-ampliable {
+      display: block;
+      position: relative;
+      line-height: 0;
+    }
+    .hero-imagen .marco-ampliable { height: 100%; }
+    .indicador-ampliar {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      z-index: 2;
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 2px solid #fffdf9;
+      border-radius: 50%;
+      background: var(--rosa);
+      color: #fffdf9;
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 4px 14px rgba(33, 29, 26, 0.22);
+      pointer-events: none;
+    }
     .visor-imagen {
       width: min(92vw, 980px);
       max-height: 92vh;
@@ -598,7 +623,6 @@
       <a href="mailto:andradara170@gmail.com" class="btn-secundario">
         Enviar correo
       </a>
-      </button>
     </div>
     <p class="aviso-copia" id="aviso-copia" role="status" aria-live="polite"></p>
     <nav class="pie-nav" aria-label="Navegación del pie de página">
@@ -617,17 +641,6 @@
 
   <script>
     const avisoConsulta = document.getElementById("aviso-consulta");
-    const botonCopiarCorreo = document.getElementById("copiar-correo");
-    const avisoCopia = document.getElementById("aviso-copia");
-
-    botonCopiarCorreo.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText("andradara170@gmail.com");
-        avisoCopia.textContent = "Correo copiado.";
-      } catch {
-        avisoCopia.textContent = "El correo es: andradara170@gmail.com";
-      }
-    });
 
     document.querySelectorAll(".link-pedir").forEach((enlace) => {
       enlace.addEventListener("click", (evento) => {
@@ -659,6 +672,15 @@
       elemento.tabIndex = 0;
       elemento.setAttribute("role", "button");
       elemento.setAttribute("aria-label", `Ampliar foto: ${elemento.alt || "imagen"}`);
+      const marco = document.createElement("span");
+      marco.className = "marco-ampliable";
+      elemento.replaceWith(marco);
+      marco.appendChild(elemento);
+      const indicador = document.createElement("span");
+      indicador.className = "indicador-ampliar";
+      indicador.setAttribute("aria-hidden", "true");
+      indicador.textContent = "+";
+      marco.appendChild(indicador);
       elemento.addEventListener("click", () => abrirImagen(elemento));
       elemento.addEventListener("keydown", (evento) => {
         if (evento.key === "Enter" || evento.key === " ") {
